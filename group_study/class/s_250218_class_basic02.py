@@ -52,9 +52,8 @@ class hyungwoo():
         print(f'{self.name}는 노트북을 킵니다.')
 
     def play_game(self, num):
-        while num > 0:
+        for _ in range(num):
             print(f'{self.name}는 게임을 합니다.')
-            num -= 1
     
     def study_coding(self):
         print(f'{self.name}는 코딩 공부를 합니다.')
