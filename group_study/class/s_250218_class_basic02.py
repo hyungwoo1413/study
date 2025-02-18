@@ -42,3 +42,27 @@ man.smoke()
 본인의 행동들을 함수로 먼저 구현한 후, 본인을 클래스로 정의하고 인스턴스를 생성 후 사용해보세요.
 자유롭게 하시면 됩니다.
 """
+
+
+class hyungwoo():
+    def __init__(self):
+        self.name = '형우'
+    
+    def open_notebook(self):
+        print(f'{self.name}는 노트북을 킵니다.')
+
+    def play_game(self, num):
+        while num > 0:
+            print(f'{self.name}는 게임을 합니다.')
+            num -= 1
+    
+    def study_coding(self):
+        print(f'{self.name}는 코딩 공부를 합니다.')
+    
+    def run(self):
+        self.open_notebook()
+        self.play_game(3)
+        self.study_coding()
+        
+me = hyungwoo()
+me.run()
