@@ -32,6 +32,7 @@ class calc_ver03(calc_ver02):
         super().__init__()
         self.accum = num
         self.log = []
+        self.stack = []
 
     def mul(self, a):
         self.log.append(self.accum)
@@ -45,28 +46,30 @@ class calc_ver03(calc_ver02):
     
     def undo(self):
         if len(self.log) == 0:
-            return print('undo 할 기록이 없습니다')
+            return print('undo 할 기록이 없습니다.')
         else:
-            self.accum = self.log[len(self.log)-1]
+            self.stack.append(self.accum)
+            self.accum = self.log.pop()
             return print(self.accum)
 
     def redo(self):
-        pass
+        if len(self.stack) == 0:
+            return print('redo 할 기록이 없습니다.')
+        else:
+            self.log.append(self.accum)
+            self.accum = self.stack.pop()
+            return print(self.accum)
 
-new_calc = calc_ver03(5)
+new_calc = calc_ver03(5)    # 5
+new_calc.undo()             # 에러 , 예외처리 요망 ('undo 할 기록이 없습니다' 출력)
+new_calc.add(3)             # 8
+new_calc.div(2)             # 4
+new_calc.undo()             # 8
+new_calc.redo()             # 4
+new_calc.redo()             # 에러 , 예외처리 요망 ('redo 할 기록이 없습니다' 출력)
+
 print(new_calc.log)
-new_calc.mul(3) # 15
-print(new_calc.log)
-new_calc.undo() # 5
-print(new_calc.log)
-new_calc.div(5) # 1
-print(new_calc.log)
-new_calc.add(7) # 8
-print(new_calc.log)
-new_calc.undo() # 1
-print(new_calc.log)
-new_calc.sub(1) # 0
-print(new_calc.log)
+print(new_calc.stack)
 
 
     
