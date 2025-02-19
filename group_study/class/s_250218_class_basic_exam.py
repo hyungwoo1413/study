@@ -28,6 +28,16 @@
 
 
 # 위에 클래스를 생성해서 , 아래 코드의 에러 메세지를 없애주세요 ~
+
+class cut_string():
+    def __init__(self, string):
+        self.string = string
+        
+    def cutting(self, n):
+        # str = self.string[:n] + ' ' + self.string[n:]
+        # return str.split(' ')
+        return [self.string[:n], self.string[n:]]
+        
 cut = cut_string('강황석준')
 print(cut.cutting(1))
 # 출력 ['강','황석준']
