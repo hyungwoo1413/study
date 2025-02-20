@@ -1,12 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
 from cal2 import calc_ver03  
+
 class CalculatorGUI:
     def __init__(self, calculator):
         self.calculator = calculator
         self.root = tk.Tk()
-        self.root.title("계산기")
+        self.root.title("계산기") ## 이건 프로그램 타이틀 변경
         self.create_widgets()
 
     def create_widgets(self):
@@ -14,6 +16,9 @@ class CalculatorGUI:
         self.display.grid(row=0, column=0, columnspan=4, sticky="nsew")
         self.display.insert(0, str(self.calculator.accum))
 
+        """
+        ## 버튼 바꿔보기
+        """
         buttons = [
             ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('+', 1, 3),
             ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('-', 2, 3),
@@ -76,16 +81,18 @@ class CalculatorGUI:
             else:
                 messagebox.showerror("Error", "잘못된 수식입니다!")
 
-        elif char == '<':
-            self.calculator.undo()
-            self.display.delete(0, tk.END)
-            self.display.insert(0, str(self.calculator.accum))
+        # ## undo , redo 못만들겠다 ㅅㅂ 하면 주석
+        # elif char == '<':
+        #     self.calculator.undo()
+        #     self.display.delete(0, tk.END)
+        #     self.display.insert(0, str(self.calculator.accum))
 
-        elif char == '>':
-            self.calculator.redo()
-            self.display.delete(0, tk.END)
-            self.display.insert(0, str(self.calculator.accum))
-
+        # elif char == '>':
+        #     self.calculator.redo()
+        #     self.display.delete(0, tk.END)
+        #     self.display.insert(0, str(self.calculator.accum))
+        # ## 여기까지
+        
     def run(self):
         self.root.mainloop()
 
