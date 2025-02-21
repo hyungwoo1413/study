@@ -94,6 +94,7 @@ list1.push_back('철씨')
 list1.print_list()
 list1.insert('왕씨','옹씨')
 list1.print_list()
+print(list1)
 
 list2 = LinkedList()
 list2.push_back('굼씨')

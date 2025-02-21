@@ -2,27 +2,29 @@
 # 단순 연결 리스트
 
 
-class SinglyLinkedList:
+
+
+class SinglyLinkedList():
     def __init__(self):
         self.head = None
         self.nodes = []
 
-    class Node:
+    class Node():
         def __init__(self, data):
             self.data = data
             self.next = None
-
-        def __str__(self):
-            return f'{self.head}'
-
-    def appends(self, data):
-        new_node = self.Node(data)
+        
+    def node_append(self, data):
         if not self.head:
-            self.head = new_node
+            self.head = self.Node(data)
         else:
-            self.nodes[-1].next = new_node
-        self.nodes.append(new_node)
+            self.nodes = self.data
+            self.head.next = self.data
+                
+        
 
 list = SinglyLinkedList()
-list.appends(10)
-list
+list.node_append(10)
+list.node_append(20)
+
+list.print_list()
