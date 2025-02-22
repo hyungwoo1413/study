@@ -24,8 +24,17 @@ r_str2 = 'graph'
 
 d_str3 = ['c','c','c','a','b','e','c']
 r_str3 = 'ace'
+
 def solution(r_str, d_str):
-    return
+    count = 0
+    for i in r_str:
+        for j in d_str:
+            if i == j:
+                count += 1
+                break
+        if count == len(r_str):
+            return True
+    return False
 
 
 print(solution(r_str,d_str))        # True
