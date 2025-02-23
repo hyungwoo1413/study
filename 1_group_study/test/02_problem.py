@@ -33,8 +33,8 @@ def solution(r_str, d_str):
                 d_str.remove(i)
                 count += 1
                 break
-        if count == len(r_str):
-            return True
+    if count == len(r_str):
+        return True
     return False
 
 
