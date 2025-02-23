@@ -30,6 +30,7 @@ def solution(r_str, d_str):
     for i in r_str:
         for j in d_str:
             if i == j:
+                d_str.remove(i)
                 count += 1
                 break
         if count == len(r_str):
