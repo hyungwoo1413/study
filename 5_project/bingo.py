@@ -1,4 +1,5 @@
 import random
+import time
 
 ## 빙고게임 만들어보기.
 
@@ -68,7 +69,7 @@ def bingo():
         # 대각선
         if bingoState[memo[0]] and bingoState[memo[5]] and bingoState[memo[10]] and bingoState[memo[15]]:
             score += 1
-        if bingoState[memo[12]] and bingoState[memo[9]] and bingoState[memo[6]] and bingoState[memo[3]]:
+        if bingoState[memo[3]] and bingoState[memo[6]] and bingoState[memo[9]] and bingoState[memo[12]]:
             score += 1
 
         if score == 3:
