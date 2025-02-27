@@ -33,11 +33,10 @@ class omok():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
                 if event.type == pygame.MOUSEBUTTONUP: # 마우스 클릭
-                    self.find_xy(pygame.mouse.get_pos()) 
-                    pygame.display.update()
+                    if event.button == 1:
+                        self.find_xy(pygame.mouse.get_pos()) 
+                        pygame.display.update()
 
     def find_xy(self, xy):
         x = xy[0]
@@ -54,11 +53,11 @@ class omok():
         
         if self.board[x_idx][y_idx] is None:
             if self.turn == False: 
-                circle(self.Surface, (255,255,255), (x_dot, y_dot), 19) # 흰색 돌 그리기
+                circle(self.Surface, 'black', (x_dot, y_dot), 19) # 검은돌 그리기
                 self.board[x_idx][y_idx] = x_dot, y_dot
                 self.turn = True
             else: 
-                circle(self.Surface, (0,0,0), (x_dot, y_dot), 19) # 검은색 돌 그리기
+                circle(self.Surface, 'white', (x_dot, y_dot), 19) # 흰돌 그리기
                 self.board[x_idx][y_idx] = x_dot, y_dot
                 self.turn = False
         else:
