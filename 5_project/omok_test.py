@@ -12,6 +12,7 @@ class omok():
         self.FPSCLOCK = pygame.time.Clock()
         pygame.display.set_caption('omok')
         self.turn = False
+        self.isPlaying = True
         self.board = [[None for _ in range(19)] for _ in range(19)]
         
     def main(self):
@@ -21,12 +22,13 @@ class omok():
 
             # 게임판 그리기
             for x in range(40, (40 * 19) + 1, 40):
-                line(self.Surface, 'black', (x, 40), (x, 40 * 19)) # 세로선
+                line(self.Surface, 'black', (x, 40), (x, 40 * 19))
             for y in range(40, (40 * 19) + 1, 40):
-                line(self.Surface, 'black', (40, y), (40 * 19, y)) # 가로선
-            
+                line(self.Surface, 'black', (40, y), (40 * 19, y))
+                
             pygame.display.update()
             self.event()
+            
 
     def event(self):
         while True:
@@ -34,10 +36,15 @@ class omok():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
+
                 if event.type == pygame.MOUSEBUTTONUP: # 마우스 클릭
                     if event.button == 1:
-                        self.find_xy(pygame.mouse.get_pos()) 
-                        pygame.display.update()
+                        if not self.isPlaying:
+                            continue
+                        else:
+                            self.find_xy(pygame.mouse.get_pos()) 
+                            pygame.display.update()
+
 
     def find_xy(self, xy):
         x = xy[0]
@@ -55,19 +62,21 @@ class omok():
         
         if self.board[x_idx][y_idx] is None:
             if self.turn == False: 
-                circle(self.Surface, (255, 255, 255), (x_dot, y_dot), 19) # 흰색 돌
+                circle(self.Surface, (0, 0, 0), (x_dot, y_dot), 19) # 검은색 돌
                 self.board[x_idx][y_idx] = (x_dot, y_dot, 'white')
-                if self.check_win(x_idx, y_idx, 'white'):  # 흰색 돌 승리 체크
-                    print("White wins!")
+                if self.check_win(x_idx, y_idx, 'white'):  # 승리 체크
+                    self.win()
                 self.turn = True
             else: 
-                circle(self.Surface, (0, 0, 0), (x_dot, y_dot), 19) # 검은색 돌
+                circle(self.Surface, (255, 255, 255), (x_dot, y_dot), 19) # 흰색 돌
                 self.board[x_idx][y_idx] = (x_dot, y_dot, 'black')
-                if self.check_win(x_idx, y_idx, 'black'):  # 검은색 돌 승리 체크
-                    print("Black wins!")
+                if self.check_win(x_idx, y_idx, 'black'):  # 승리 체크
+                    self.win()
                 self.turn = False
         else:
             return
+
+    # ===================================================================================================================================
 
     def check_win(self, x_idx, y_idx, color):
         # (x_idx, y_idx) 위치에 놓은 색의 돌에 대해 승리 조건 체크
@@ -101,6 +110,20 @@ class omok():
                 return True
 
         return False
+    
+    # ===================================================================================================================================
+
+    def win(self):
+        myfont = pygame.font.SysFont('NanumGothic', 50)
+        black_win = myfont.render('BLACK WIN', True, 'black')
+        white_win = myfont.render('WHITE WIN', True, 'white')
+
+        self.isPlaying = False # 게임종료
+
+        if self.turn:
+            self.Surface.blit(white_win, (300, 5))
+        else:
+            self.Surface.blit(black_win, (300, 5))
 
 
 if __name__ == '__main__':
