@@ -1,4 +1,8 @@
 import random
+<<<<<<< HEAD
+=======
+import time
+>>>>>>> 86d37d2c2c8701b9c35925c9fb1face6c22fc073
 
 ## 빙고게임 만들어보기.
 
@@ -46,7 +50,10 @@ def bingo():
         ## 스코어 어떻게 체크하지? , 로직 개선해야됨 
         ## 1. 탐색 , 2. 스코어 올라가는 로직
         # 가로 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 86d37d2c2c8701b9c35925c9fb1face6c22fc073
         if bingoState[memo[0]] and bingoState[memo[1]] and bingoState[memo[2]] and bingoState[memo[3]]:
             score += 1
         if bingoState[memo[4]] and bingoState[memo[5]] and bingoState[memo[6]] and bingoState[memo[7]]:
@@ -69,9 +76,14 @@ def bingo():
         # 대각선
         if bingoState[memo[0]] and bingoState[memo[5]] and bingoState[memo[10]] and bingoState[memo[15]]:
             score += 1
+<<<<<<< HEAD
         if bingoState[memo[12]] and bingoState[memo[9]] and bingoState[memo[6]] and bingoState[memo[3]]:
             score += 1
             
+=======
+        if bingoState[memo[3]] and bingoState[memo[6]] and bingoState[memo[9]] and bingoState[memo[12]]:
+            score += 1
+>>>>>>> 86d37d2c2c8701b9c35925c9fb1face6c22fc073
 
         if score == 3:
             print('게임 클리어!')

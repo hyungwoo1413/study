@@ -25,4 +25,8 @@ while True:
         pass
     elif command == 3 : # 종료
         print('프로그램을 종료합니다.')
+<<<<<<< HEAD
         break
+=======
+        break
+>>>>>>> 86d37d2c2c8701b9c35925c9fb1face6c22fc073
