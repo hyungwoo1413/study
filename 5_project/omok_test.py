@@ -56,9 +56,11 @@ class omok():
                 x_dot = i + 40
             if 20 + i <= y <= 60 + i:
                 y_dot = i + 40
-
-        x_idx = (x_dot // 40) - 1
-        y_idx = (y_dot // 40) - 1
+        try:
+            x_idx = (x_dot // 40) - 1
+            y_idx = (y_dot // 40) - 1
+        except:
+            return
         
         if self.board[x_idx][y_idx] is None:
             if self.turn == False: 
