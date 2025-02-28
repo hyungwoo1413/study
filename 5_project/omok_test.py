@@ -19,7 +19,8 @@ class omok():
         while True:
             self.FPSCLOCK.tick(30)
             self.Surface.fill('#DCB35C')
-
+            self.myfont = pygame.font.SysFont('D2Coding', 60)
+            
             # 게임판 그리기
             for x in range(40, (40 * 19) + 1, 40):
                 line(self.Surface, 'black', (x, 40), (x, 40 * 19))
@@ -29,7 +30,6 @@ class omok():
             pygame.display.update()
             self.event()
             
-
     def event(self):
         while True:
             for event in pygame.event.get():
@@ -45,12 +45,10 @@ class omok():
                             self.find_xy(pygame.mouse.get_pos()) 
                             pygame.display.update()
 
-
     def find_xy(self, xy):
         x = xy[0]
         y = xy[1]
 
-        # 클릭된 위치를 grid에 맞추기
         for i in range(0, 720 + 1, 40):
             if 20 + i <= x <= 60 + i:
                 x_dot = i + 40
@@ -116,16 +114,31 @@ class omok():
     # ===================================================================================================================================
 
     def win(self):
-        myfont = pygame.font.SysFont('NanumGothic', 50)
-        black_win = myfont.render('BLACK WIN', True, 'black')
-        white_win = myfont.render('WHITE WIN', True, 'white')
+        white_win = self.myfont.render('백돌 승리', True, 'white')
+        black_win = self.myfont.render('흑돌 승리', True, 'black')
 
         self.isPlaying = False # 게임종료
+        self.Surface.fill('#DCB35C')
 
-        if self.turn:
-            self.Surface.blit(white_win, (300, 5))
+        if not self.turn:
+            self.Surface.blit(black_win, (270, 350))
         else:
-            self.Surface.blit(black_win, (300, 5))
+            self.Surface.blit(white_win, (270, 350))
+
+        pygame.display.update()
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONUP: # 마우스 클릭하면 리셋
+                    if event.button == 1:
+                        self.reset()
+        
+    def reset(self):
+        self.board = [[None for _ in range(19)] for _ in range(19)]
+        self.turn = False
+        self.isPlaying = True
+        self.main()
+
 
 
 if __name__ == '__main__':
