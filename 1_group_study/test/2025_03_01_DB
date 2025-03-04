@@ -1,5 +1,5 @@
 -- 1. 데이터베이스 생성
-CREATE DATABASE PracticeDB;
+    CREATE DATABASE PracticeDB;
 USE PracticeDB;
 
 -- 2. 고객(Customer) 테이블 생성
