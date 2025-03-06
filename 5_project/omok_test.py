@@ -2,6 +2,9 @@ import pygame
 from pygame.locals import *
 from pygame.draw import *
 import sys
+from flask import Flask, request
+import socketio
+from flask_socketio import SocketIO, emit
 
 
 class omok():
