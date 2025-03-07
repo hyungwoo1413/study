@@ -1,3 +1,5 @@
-message = "happy birthday!"
+hp = 23
 
-print(len(message)*2)
+# 장군개미 5, 병정개미 3, 일개미 1
+
+print(hp / 5)
